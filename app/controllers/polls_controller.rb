@@ -6,7 +6,8 @@ class PollsController < ApplicationController
 
     render json: {
       question: poll.question,
-      answer_list: poll.answer_list
+      answer_list: poll.answer_list,
+      token: poll.token
     }
   end
 

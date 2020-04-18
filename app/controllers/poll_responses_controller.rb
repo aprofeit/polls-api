@@ -1,4 +1,6 @@
 class PollResponsesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     poll = Poll.find_by!(token: params[:poll_token])
     poll_response = poll.poll_responses.new(poll_response_params)
