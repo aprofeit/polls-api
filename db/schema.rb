@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_18_084913) do
+ActiveRecord::Schema.define(version: 2020_04_18_094925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "poll_responses", force: :cascade do |t|
+    t.string "answer"
+    t.bigint "poll_id", null: false
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_poll_responses_on_poll_id"
+    t.index ["token"], name: "index_poll_responses_on_token", unique: true
+  end
 
   create_table "polls", force: :cascade do |t|
     t.string "token"
@@ -24,4 +34,5 @@ ActiveRecord::Schema.define(version: 2020_04_18_084913) do
     t.index ["token"], name: "index_polls_on_token", unique: true
   end
 
+  add_foreign_key "poll_responses", "polls"
 end

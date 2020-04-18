@@ -1,4 +1,6 @@
 class Poll < ApplicationRecord
+  has_many :poll_responses
+
   before_create :set_token
 
   def answer_list
