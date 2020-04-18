@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+colors:
+  question: What's your favorite color?
+  answers: red, blue, green
+  token: abc123
