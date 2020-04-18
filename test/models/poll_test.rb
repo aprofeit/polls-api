@@ -9,6 +9,12 @@ class PollTest < ActiveSupport::TestCase
     assert_equal SecureRandom.hex.length, poll.token.length
   end
 
+  test "creating a poll strips spaces from answers" do
+    poll = Poll.create!(valid_poll_params.merge({answers: "something   ,    else"}))
+
+    assert_equal ["something", "else"].sort, poll.answer_list.sort
+  end
+
   test "answer_list correctly parses the answers" do
     poll = polls(:colors)
 

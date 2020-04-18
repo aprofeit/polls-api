@@ -1,4 +1,13 @@
 class PollsController < ApplicationController
+  def show
+    poll = Poll.find_by!(token: params[:token])
+
+    render json: {
+      question: poll.question,
+      answers: poll.answer_list
+    }
+  end
+
   def create
     poll = Poll.new(poll_params)
 

@@ -10,5 +10,22 @@ class PollsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
+
+    assert_response :created
+    assert_equal SecureRandom.hex.length, parsed_response['token'].length
+  end
+
+  test "getting a poll" do
+    poll = polls(:colors)
+
+    get "/polls/#{poll.token}"
+
+    assert_response 200
+  end
+
+  private
+
+  def parsed_response
+    JSON.parse(@response.body)
   end
 end
