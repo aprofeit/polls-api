@@ -1,10 +1,12 @@
 class PollsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def show
     poll = Poll.find_by!(token: params[:token])
 
     render json: {
       question: poll.question,
-      answers: poll.answer_list
+      answer_list: poll.answer_list
     }
   end
 
