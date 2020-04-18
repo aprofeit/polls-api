@@ -10,9 +10,15 @@ class PollTest < ActiveSupport::TestCase
   end
 
   test "creating a poll strips spaces from answers" do
-    poll = Poll.create!(valid_poll_params.merge({answers: "something   ,    else"}))
+    poll = Poll.create!(valid_poll_params.merge(answers: "something   ,    else"))
 
     assert_equal ["something", "else"].sort, poll.answer_list.sort
+  end
+
+  test "creating a poll with an escaped comma works" do
+    poll = Poll.create!(valid_poll_params.merge(answers: "something\,something else    "))
+
+    assert_equal ["something", "something else"].sort, poll.answer_list.sort
   end
 
   test "answer_list correctly parses the answers" do
