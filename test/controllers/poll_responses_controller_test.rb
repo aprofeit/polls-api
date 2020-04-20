@@ -10,4 +10,10 @@ class PollResponsesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 201
   end
+
+  private
+
+  def parsed_response
+    JSON.parse(@response.body)
+  end
 end

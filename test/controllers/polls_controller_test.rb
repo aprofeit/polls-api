@@ -23,6 +23,13 @@ class PollsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
   end
 
+  test "getting polls" do
+    get "/polls"
+
+    assert_response 200
+    assert_operator parsed_response.length, :>=, 1
+  end
+
   private
 
   def parsed_response
