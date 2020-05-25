@@ -2,5 +2,5 @@
 
 colors:
   question: What's your favorite color?
-  answers: red, blue, green
+  options: red, blue, green
   token: abc123

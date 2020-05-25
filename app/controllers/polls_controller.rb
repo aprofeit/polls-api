@@ -26,6 +26,6 @@ class PollsController < ApplicationController
   private
 
   def poll_params
-    params.require(:poll).permit(:question, :answers)
+    params.require(:poll).permit(:question, :options)
   end
 end

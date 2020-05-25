@@ -5,15 +5,15 @@ class Poll < ApplicationRecord
   before_create :set_token
   after_commit :create_poll_options, on: :create
 
-  def answer_list
-    answers.split(',').map(&:strip)
+  def option_list
+    options.split(',').map(&:strip)
   end
 
   private
 
   def create_poll_options
-    answer_list.each do |answer|
-      poll_options.create!(label: answer)
+    option_list.each do |option|
+      poll_options.create!(label: option)
     end
   end
 

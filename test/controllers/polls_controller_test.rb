@@ -42,7 +42,7 @@ class PollsControllerTest < ActionDispatch::IntegrationTest
     {
       poll: {
         question: "wtf?",
-        answers: "wat, huh, why"
+        options: "wat, huh, why"
       }
     }
   end
