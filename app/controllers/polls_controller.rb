@@ -4,24 +4,20 @@ class PollsController < ApplicationController
   def index
     polls = Poll.last(5).reverse
 
-    render json: { polls: polls }
+    render json: polls
   end
 
   def show
     poll = Poll.find_by!(token: params[:token])
 
-    render json: {
-      question: poll.question,
-      answer_list: poll.answer_list,
-      token: poll.token
-    }
+    render json: poll.as_json(include: :poll_options)
   end
 
   def create
     poll = Poll.new(poll_params)
 
     if poll.save
-      render json: { token: poll.token }, status: 201
+      render json: poll, status: 201
     else
       render json: { errors: poll.errors.full_messages }, status: 422
     end
