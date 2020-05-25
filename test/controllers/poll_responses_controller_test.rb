@@ -23,7 +23,9 @@ class PollResponsesControllerTest < ActionDispatch::IntegrationTest
     get "/polls/#{poll.token}/poll_responses"
 
     assert_response 200
-    assert_equal PollResponse.count, parsed_response.size
+    assert_equal poll.question, parsed_response['question']
+    assert_equal PollResponse.count, parsed_response['poll_responses'].size
+    assert_equal PollOption.count, parsed_response['poll_options'].size
   end
 
   private

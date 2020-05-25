@@ -4,7 +4,7 @@ class PollResponsesController < ApplicationController
   def index
     poll = Poll.find_by!(token: params[:poll_token])
 
-    render json: poll.poll_responses
+    render json: poll.as_json(include: [:poll_responses, :poll_options])
   end
 
   def create
