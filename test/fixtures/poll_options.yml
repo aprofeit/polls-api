@@ -1,3 +1,11 @@
 red:
   label: red
   poll: colors
+
+blue:
+  label: blue
+  poll: colors
+
+green:
+  label: green
+  poll: colors

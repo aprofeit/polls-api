@@ -17,6 +17,15 @@ class PollResponsesControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
+  test "getting responses" do
+    poll = polls(:colors)
+
+    get "/polls/#{poll.token}/poll_responses"
+
+    assert_response 200
+    assert_equal PollResponse.count, parsed_response.size
+  end
+
   private
 
   def parsed_response

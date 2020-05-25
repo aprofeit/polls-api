@@ -1,6 +1,6 @@
 class Poll < ApplicationRecord
-  has_many :poll_responses
-  has_many :poll_options
+  has_many :poll_responses, dependent: :destroy
+  has_many :poll_options, dependent: :destroy
 
   before_create :set_token
   after_commit :create_poll_options, on: :create
