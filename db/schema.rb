@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_185602) do
+ActiveRecord::Schema.define(version: 2020_05_25_203505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_185602) do
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "poll_option_id", null: false
     t.index ["poll_id"], name: "index_poll_responses_on_poll_id"
+    t.index ["poll_option_id"], name: "index_poll_responses_on_poll_option_id"
     t.index ["token"], name: "index_poll_responses_on_token", unique: true
   end
 
@@ -43,5 +45,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_185602) do
   end
 
   add_foreign_key "poll_options", "polls"
+  add_foreign_key "poll_responses", "poll_options"
   add_foreign_key "poll_responses", "polls"
 end

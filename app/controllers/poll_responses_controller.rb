@@ -3,7 +3,8 @@ class PollResponsesController < ApplicationController
 
   def create
     poll = Poll.find_by!(token: params[:poll_token])
-    poll_response = poll.poll_responses.new(poll_response_params)
+    poll_response = poll.poll_responses.new
+    poll_response.poll_option = poll.poll_options.find(params[:poll_response][:option_id])
 
     if poll_response.save!
       render json: { message: 'ok' }, status: 201
@@ -15,6 +16,6 @@ class PollResponsesController < ApplicationController
   private
 
   def poll_response_params
-    params.require(:poll_response).permit(:answer)
+    params.require(:poll_response).permit(:option_id)
   end
 end
